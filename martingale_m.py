@@ -7,7 +7,8 @@
 # マーチンゲール 法
 
 
-def martingale(target_list_ninki,nanban,losing_streak,total_bet, bet, list_empty, bet_list, initial_bet,target_list_return,race_count,profit,revenue_win,profit_list):
+def martingale(target_list_ninki,nanban,losing_streak,total_bet, bet, list_empty, bet_list, initial_bet,target_list_return,race_count,profit,revenue_win,profit_list,stop_losing):
+
 
     race_count=0
     # 過去12レースの結果を仮にサンプルとして、リスト化
@@ -20,12 +21,23 @@ def martingale(target_list_ninki,nanban,losing_streak,total_bet, bet, list_empty
         print(race_count,"レース目")
 
         if i != nanban:
+
             losing_streak += 1
             print(losing_streak,"連敗")
             total_bet += bet
             print(total_bet,"円損失中")
-            bet = bet*2
-            print("ベット金額",bet,"円")
+
+            if losing_streak == stop_losing:
+                print("ベット金額を初回額にリセット")
+                bet_list.append(total_bet)
+                total_bet = 0
+                bet = initial_bet
+
+            else:
+                bet = bet*2
+                print("ベット金額",bet,"円")
+
+
 
         else:
             print("的中！！！")
@@ -61,6 +73,8 @@ def martingale(target_list_ninki,nanban,losing_streak,total_bet, bet, list_empty
 
     print("的中時利益：",profit_list)
     print("的中時利益合計:",sum(profit_list))
+
+    print("ベット金額合計:",sum(bet_list))
 
     return total_bet
     #martingale()
