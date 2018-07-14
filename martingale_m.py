@@ -8,6 +8,7 @@
 
 
 def martingale(target_list_ninki,nanban,losing_streak,total_bet, bet, list_empty, bet_list, initial_bet,target_list_return,race_count,profit,revenue_win,profit_list,stop_losing):
+    print("stop_losing",stop_losing)
 
 
     race_count=0
@@ -28,9 +29,11 @@ def martingale(target_list_ninki,nanban,losing_streak,total_bet, bet, list_empty
             print(total_bet,"円損失中")
 
             if losing_streak == stop_losing:
-                print("ベット金額を初回額にリセット")
+                print("損切確定！ベット金額を初回額にリセット。")
+                print("連敗数もリセット！")
                 bet_list.append(total_bet)
                 total_bet = 0
+                losing_streak = 0
                 bet = initial_bet
 
             else:
