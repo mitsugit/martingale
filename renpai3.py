@@ -76,6 +76,10 @@ def renpai3():
 
 
     nanban = int(input("何番人気について調べますか"))
+
+    start_bet = int(input("何回来なかったらベットをスタートさせますか"))
+
+
     stop_losing = int(input("何回連続で負けたらベット金額を初回金額にリセットしますか"))
 
     losing_streak = 0
@@ -112,7 +116,8 @@ def renpai3():
         import martingale_m
         importlib.reload(martingale_m)
 
-        martingale_m.martingale(target_list_ninki,nanban,losing_streak,total_bet, bet,list_empty, bet_list,initial_bet,target_list_return,race_count,profit,revenue_win,profit_list,stop_losing)
+        bet_list,profit_list = martingale_m.martingale(target_list_ninki,nanban,losing_streak,total_bet, bet,list_empty, bet_list,initial_bet,target_list_return,race_count,profit,revenue_win,profit_list,stop_losing,start_bet)
+
 
      #逆マーチンゲール 関数の呼び出し
 
@@ -166,3 +171,6 @@ def renpai3():
         importlib.reload(MonteCarlo)
 
         MonteCarlo.MonteCarlo_3(past_race,nanban,losing_streak,total_bet, bet,list_empty, bet_list,initial_bet,betting_list,losing_total,curren_list,initial_list)
+
+    #返値を辞書型で返す
+    return {'bet_list':bet_list, 'profit_list':profit_list}
