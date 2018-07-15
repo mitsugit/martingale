@@ -104,7 +104,7 @@ def martingale(target_list_ninki,nanban,losing_streak,total_bet, bet, list_empty
 
     print("ベット金額合計:",sum(bet_list))
 
-    return total_bet
+    return bet_list, profit_list
     #martingale()
 
 
