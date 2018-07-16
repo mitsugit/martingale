@@ -59,7 +59,7 @@ def martingale(target_list_ninki,nanban,losing_streak,total_bet, bet, list_empty
 
         else:
             print("1着")
-            if losing_streak >= 2:
+            if count >= 1:
 
                 print("連敗ストップ")
 
